@@ -479,16 +479,6 @@
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     .hero-scroll { left: 1.5rem; }
   }
-
-#experience{position:relative;overflow:hidden;}
-#experience-code-canvas{
-position:absolute;inset:0;width:100%;height:100%;
-z-index:0;opacity:.08;pointer-events:none;
-}
-#experience .section-label,
-#experience .section-title,
-#experience .exp-block{position:relative;z-index:2;}
-
 </style>
 </head>
 <body>
@@ -575,7 +565,7 @@ z-index:0;opacity:.08;pointer-events:none;
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience"><canvas id="experience-code-canvas"></canvas>
+<section id="experience">
   <div class="section-label">03 / Experience</div>
   <h2 class="section-title">WORK HISTORY</h2>
   <div class="exp-block reveal">
@@ -657,7 +647,7 @@ z-index:0;opacity:.08;pointer-events:none;
 </section>
 
 <footer>
-  <span>© 2024 ANSH VISHVAKARMA</span>
+  <span>© 2026 ANSH VISHVAKARMA</span>
   <span>FRONTEND DEVELOPER · INDIA</span>
 </footer>
 
@@ -1110,51 +1100,6 @@ draw();
 
   drawRocketScene();
 })();
-
-/* EXPERIENCE CODE RAIN */
-(function(){
-const canvas=document.getElementById('experience-code-canvas');
-if(!canvas) return;
-const ctx=canvas.getContext('2d');
-function resize(){
-const s=document.getElementById('experience');
-canvas.width=s.offsetWidth;
-canvas.height=s.offsetHeight;
-}
-resize();
-window.addEventListener('resize',resize);
-
-const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{}[]()<>=+-*/;:.&|!?#$%";
-const fontSize=14;
-let columns=[]; let frame=0;
-
-function init(){
-columns=Array(Math.floor(canvas.width/fontSize)).fill(0);
-}
-init();
-
-function draw(){ frame++;
-ctx.fillStyle='rgba(10,10,10,0.08)';
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle='#47c8ff';
-ctx.font=fontSize+'px JetBrains Mono';
-
-for(let i=0;i<columns.length;i++){
-const text=chars[Math.floor(Math.random()*chars.length)];
-const x=i*fontSize;
-const y=columns[i]*fontSize;
-ctx.fillText(text,x,y);
-
-if(y>canvas.height && Math.random()>0.975){
-columns[i]=0;
-}
-if(frame % 4 === 0){ columns[i]++; }
-}
-requestAnimationFrame(draw);
-}
-draw();
-})();
-
 </script>
 </body>
 </html>
